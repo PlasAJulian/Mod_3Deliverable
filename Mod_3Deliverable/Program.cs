@@ -41,20 +41,25 @@ namespace Mod_3Deliverable
             //string fileText = File.ReadAllText("../../../files/datablistp.scl"); 
             //string fileText = File.ReadAllText("../../../files/linkedg.scl"); 
 
+
+
             //Takes in the file loction from the user threw the console.
-            Console.WriteLine("Please type the full loction of the file and its name. then push enter \nan it should look simmaler to the following  '"+ "C:/Users/name/Desktop/folderName/fileName.scl'");
+            Console.WriteLine("Please type the full loction of the file and its name. then push enter \nan it should look simmaler to the following  '" + "C:/Users/name/Desktop/folderName/fileName.scl'");
             string location = Console.ReadLine();
 
             //Checks if the file exists. If now allows user to enter another location. 
             while (!File.Exists(location))
             {
-                Console.WriteLine("The file loction '"+location+"' does not exists. Please try again.");
+                Console.WriteLine("The file loction '" + location + "' does not exists. Please try again.");
                 Console.WriteLine("Please type the full loction of the file and its name. then push enter \nan it should look simmaler to the following  '" + "C:/Users/name/Desktop/folderName/fileName.scl'");
                 location = Console.ReadLine();
             }
 
+
             //Reads the file given the path and makes the file given into a single string.
             string fileText = File.ReadAllText(location);
+
+
 
             //Splits string by line and puts it into list.
             fileList = fileText.Split('\n').ToList();
@@ -133,7 +138,7 @@ namespace Mod_3Deliverable
                 int i = list.IndexOf(word);
                 if (word == "description")
                 {
-                    //The description text is placed between the string "description" and "*/".
+                    //The description text is placed between the string "description" and "*/
                     //When the string description is found the following removes items in the list until it hit "*/" which is the end of the description text. 
                     i++;
                     for (int j = i; j < list.Count; j++)
@@ -157,7 +162,7 @@ namespace Mod_3Deliverable
         {
             //We made the whole string lower case to avoid and case sensitive words.  
             grammer = grammer.ToLower();
- 
+
             //We loop there the given list. 
             foreach (string line in list)
             {
@@ -171,14 +176,14 @@ namespace Mod_3Deliverable
                     if (grammer.Contains(" " + word + " ") && word != "")
                     {
                         keyWords.Add(word);
-
+                        //Console.WriteLine(splitGrammer(word) +": "+word);
                         //Know that we know the word is a keyword found in the grammar string, we need to check if it comes with an identifier. 
                         //Using the splitGrammer boolean when its true it looks the next word after the keyword and adds it to the identifier list. 
-                        if (splitGrammer(word))
+                        if (splitGrammer(word) == true)
                         {
                             identifiers.Add(lineList[lineList.IndexOf(word) + 1]);
                         }
-                        break; 
+                        break;
                     }
                 }
             }
@@ -217,10 +222,10 @@ namespace Mod_3Deliverable
             foreach (string line in grammarLines)
             {
                 //We check if the line we are looking at has the keyword.
-                if (line.Contains(key.ToUpper()))
+                if (line.Contains(key))
                 {
                     //If the keyword is found in the line we check if the word after it is either and identifier, name_ref, or is define. These three can be seen as a variable name.
-                    if (line.Contains(" " + key.ToUpper() + " IDENTIFIER") || line.Contains(key.ToUpper() + " name_ref") || line.Contains("DEFINE"))
+                    if (line.Contains(key + " identifier") || line.Contains(key + " name_ref") || key == "define")
                     {
                         return true;
                     }
