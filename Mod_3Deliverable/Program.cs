@@ -30,15 +30,8 @@ namespace Mod_3Deliverable
             //string fileText = File.ReadAllText("../../../files/bitops1.scl"); 
             //string fileText = File.ReadAllText("../../../files/datablistp.scl"); 
             //string fileText = File.ReadAllText("../../../files/linkedg.scl"); 
-            scanner s = new scanner();
-            s.scan();
-            List<string> ll = s.getFileList();
-            foreach (var word in ll)
-            {
-                Console.Write(word.Trim() + "\n ");
-            }
-
-
+            parser p = new parser();
+            p.begin();
         }
 
     }

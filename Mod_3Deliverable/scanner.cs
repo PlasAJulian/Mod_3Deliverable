@@ -91,7 +91,7 @@ namespace Mod_3Deliverable
         //When given a list it used the clean method to remove comments and descriptions. The cleaning is done in two steps. First removing comments then and addition text used to describe the code.  
         public static List<string> clean(List<string> list)
         {
-            //This removes the comments. Vomments are found but finding the double slash and removing anything after that.
+            //This removes the comments. Comments are found but finding the double slash and removing anything after that.
             //Each line from the given file is treated as a single item in the list. This loop looks at each line of the text.
             foreach (var word in list.ToList())
             {
@@ -211,10 +211,6 @@ namespace Mod_3Deliverable
                 }
             }
             return false;
-        }
-        public List<string> getFileList()
-        {
-            return fileList;
         }
     }
 }
