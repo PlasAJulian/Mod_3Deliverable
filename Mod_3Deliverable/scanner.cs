@@ -1,4 +1,16 @@
-﻿using System;
+﻿/*
+ * 2nd Deliverable
+ * Kennesaw State University
+ * Department of Computer Science 
+ * CS 4308 - Concepts of Programming Languages W02 
+ * Spring 2022 
+ * 
+ * Group members 
+ * Plasencia, Julian
+ * Puplampu, Jillian
+ * Santiago, Jerry
+ */
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -54,7 +66,7 @@ namespace Mod_3Deliverable
             FindOperator(fileList);
 
             //Everything is printed to console using the display method.  
-            // display();
+            display();
         }
         //Displays each list and the strings within each list.
         public static void display()

@@ -1,4 +1,16 @@
-﻿using System;
+﻿/*
+ * 2nd Deliverable
+ * Kennesaw State University
+ * Department of Computer Science 
+ * CS 4308 - Concepts of Programming Languages W02 
+ * Spring 2022 
+ * 
+ * Group members 
+ * Plasencia, Julian
+ * Puplampu, Jillian
+ * Santiago, Jerry
+ */
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,12 +20,16 @@ namespace Mod_3Deliverable
 {
     class parser
     {
+        //similar to the scanner we imported the grammar text file so it can be referenced to find keywords. 
         private static string grammer = File.ReadAllText("../../../files/scl_grammar.txt");
+        //instead of having to write the same output into the console two strings were made. 
         public string inText = "Entering <keyword>\nEntering <term>\nEntering <operators>\n";
         public string outText = "Exiting <operators>\nExiting <term>\nExiting <keyword>\n";
+        //empty list to store the scanned document and the identifiers. 
         public List<string> scanedDoc;
         public List<string> identifiersList = new List<string>();
 
+        //this method runs the whole parser and is only called bt the method begin.
         private void start()
         {
             //Takes in the file loction from the user threw the console.
@@ -40,8 +56,10 @@ namespace Mod_3Deliverable
             //The list is cleaned to remove comments and descriptions but being sent to our clean method. This line also removes empty lines in the list.  
             scanedDoc = clean(scanedDoc).Where(s => !string.IsNullOrWhiteSpace(s)).Distinct().ToList();
 
+            //returns the next token that is not comment.
             getNextToken();
         }
+        //as stated in the project guideline this Boolean is used to make sure we are identifying the identifier once. 
         private Boolean identifierExists(string identifier)
         {
             if (identifiersList.Contains(identifier))
@@ -53,24 +71,33 @@ namespace Mod_3Deliverable
                 return false;
             }
         }
+        //returns the next token that is not comment. to ignore the comments the same clear method is used that was used in the scanner.  
         private void getNextToken()
         {
+            //takes the grammar and makes all the characters lowercase to be make it easier to refences . 
             grammer = grammer.ToLower();
             foreach (string line in scanedDoc)
             {
+                //when the document is scanned each line in the file is its own string in the list. 
+                //this further splits the line to look at each individual word in that line. 
                 List<string> words = line.Split(' ').ToList();
+                
+                //This loop loops therw each word individualy and checks if any of the words is a keyword.
                 foreach (string i in words)
                 {
+                    //if a key word is found, it is printed and it checks if the next for is an identifier.
                     if (grammer.Contains(" " + i + " ") && i != "")
                     {
                         Console.WriteLine("Next token is: "+ scanedDoc.IndexOf(line)+ " Next Lexeme is "+ i);
                         Console.WriteLine(inText);
                         if (i != words.Last()) {
+                            //If the next word is an identifier, it calls the identifierExists method to check if it is and identifier we already defined. 
                             if (splitGrammer(i) == true)
                             {
                                 string id = words[words.IndexOf(i) + 1];
                                 if (identifierExists(id) == false)
                                 {
+                                    //if the identifier it new it is printed.
                                     Console.WriteLine("Next token is: " + scanedDoc.IndexOf(line) + " Next Lexeme is " + id);
                                 }
                                 else
@@ -88,6 +115,7 @@ namespace Mod_3Deliverable
                 }
             }
         }
+        //This method is called the start method to run the code. This is the only method that can be called from the outside.  
         public void begin()
         {
             start();

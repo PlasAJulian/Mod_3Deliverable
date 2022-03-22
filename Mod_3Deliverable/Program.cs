@@ -1,5 +1,5 @@
 ﻿/*
- * 1st Deliverable
+ * 2nd Deliverable
  * Kennesaw State University
  * Department of Computer Science 
  * CS 4308 - Concepts of Programming Languages W02 
@@ -19,7 +19,7 @@ namespace Mod_3Deliverable
 {
     class Program
     {
-
+        //This time instead of everything being placed in the main, now we create an object and run the methods that we need. 
         static void Main(string[] args)
         {
             //Manually type the file location to test without user error.
@@ -30,6 +30,12 @@ namespace Mod_3Deliverable
             //string fileText = File.ReadAllText("../../../files/bitops1.scl"); 
             //string fileText = File.ReadAllText("../../../files/datablistp.scl"); 
             //string fileText = File.ReadAllText("../../../files/linkedg.scl"); 
+
+            //this is the scanner from the first deliverable.
+            //scanner s = new scanner();
+            //s.scan();
+
+            //this is the parser from the second deliverable
             parser p = new parser();
             p.begin();
         }
